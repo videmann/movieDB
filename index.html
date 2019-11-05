@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+
+	<title>page title</title>
+	<meta name="description" content="page description">
+
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="icon" href="img/favicon.png">
+	<meta property="og:image" content="img/preview.jpg">
+
+	<link rel="stylesheet" href="css/styles.min.css">
+
+</head>
+
+<body>
+	<div class="layout layout--flex layout--grid">
+		<header class="layout__header">
+			<div class="container">
+				<h1 class="layout__header-title">Каталог фильмов</h1>
+				<div class="input input--search input_theme--white-bordered">
+					<input class="input__search-input" type="text" name="q" aria-autocomplete="datalist" list="datalist" tabindex="1" autofocus="true">
+					<datalist id="datalist">
+						<option value="гладиатор">гладиатор</option>
+					</datalist>
+					<label class="label label--placeholder">Введите название</label>
+					<i class="icon icon--search"></i>
+				</div>
+			</div>
+		</header>
+		<main class="layout__body">
+			<section class="section section--films">
+				<div class="container container--white" id="container">
+					<div class="grid" id="films"></div>
+				</div>
+			</section>
+		</main>
+		<footer class="layout__footer"></footer>
+	</div>
+
+	<script src="js/main.min.js"></script>
+
+</body>
+
+</html>

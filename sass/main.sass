@@ -1,0 +1,311 @@
+@import libs
+
+// colors
+$color-black: #222D35
+$color-grey: #536069
+$color-placeholder: #C3D0D8
+$color-border: #E4E4E4
+$color-background: #E5E5E5
+$color-blue: #108CE5
+$color-white: #ffffff
+
+// sizes
+$font-size-global: 10px
+
+$font-size-large: 2.4rem
+$line-height-large: 3.4rem
+
+.text--l
+    font-size: $font-size-large
+    line-height: $line-height-large
+
+$font-size-normal: 1.5rem
+$line-height-normal: 2rem
+
+.text--n
+    font-size: $font-size-normal
+    line-height: $line-height-normal
+
+$font-size-small: 1.2rem
+$line-height-small: 1.6rem
+
+.text--s
+    font-size: $font-size-small
+    line-height: $line-height-small
+
+$radius-default: .4rem
+$shadow-default: 0px .1rem .8rem rgba(78, 116, 152, 0.2)
+
+%button-hover
+    background-color: darken($color-blue, 4)
+
+.p_y--2
+    padding: 2.2rem 0
+
+.visually-hidden
+    position: absolute
+    clip: rect(0 0 0 0)
+    width: 1px
+    height: 1px
+    margin: -1px
+
+*, *:before, *:after
+    box-sizing: border-box
+    margin: 0
+    padding: 0
+    transition: all ease .3s
+
+html, body, .layout
+    height: 100%
+
+html
+    font-family: 'Tahoma'
+    font-size: $font-size-global
+
+body
+    font-size: $font-size-normal
+    // background-color: $color-background
+    // overflow: hidden
+
+.icon
+    background-repeat: no-repeat
+    background-position: 50% 50%
+    background-size: cover
+    &--search
+        background-image: url('/img/icon-search.svg')
+
+.input
+    position: relative
+    border-radius: $radius-default
+    font-size: $font-size-normal
+    line-height: $line-height-normal
+    overflow: hidden
+    &_theme--white-bordered
+        background: $color-white
+        border: 1px solid $color-border
+        color: $color-grey
+        &:focus-within
+            label
+                opacity: 0
+        input
+            all: initial
+            -webkit-appearance: none
+            font-family: inherit
+            position: relative
+            font-size: inherit
+            line-height: inherit
+            background: transparent
+            padding: 1rem 4rem
+            width: 100%
+            max-width: 100%
+            z-index: 2
+            &:focus ~ label
+                opacity: 0
+        label
+            position: absolute
+            top: 50%
+            transform: translateY(-50%)
+            left: 4rem
+            font-size: inherit
+            line-height: inherit
+            color: $color-placeholder
+            z-index: 1
+        i
+            position: absolute
+            display: block
+            top: 50%
+            transform: translateY(-50%)
+            left: 1.2rem
+            width: 1.5rem
+            height: 1.6rem
+button
+    all: initial
+    -webkit-appearance: none
+    position: relative
+    cursor: pointer
+.button
+    padding: .7rem 5.7rem
+    border-radius: 4px
+    font-weight: normal
+    &_theme--blue
+        background: $color-blue
+        color: $color-white
+        font-family: 'Tahoma'
+        font-size: 1.3rem
+        line-height: 18px
+        &:hover
+            @extend %button-hover
+
+.img
+    position: relative
+    &--responsive
+        width: 100%
+        max-width: 100%
+        height: auto
+
+.container
+    position: relative
+    margin: 0 auto
+    max-width: 871px
+    padding-left: 3rem
+    padding-right: 3rem
+    &--white
+        background: $color-white
+
+.layout__header
+    &-title
+        font-size: $font-size-large
+        color: $color-black
+        margin: 2.2rem 0
+
+@keyframes loading
+    from
+        transform: rotate(0deg)
+    to
+        transform: rotate(360deg)
+
+.layout__body
+    position: relative
+    padding-bottom: 60px
+    &.isLoading
+        &:before
+            content: ''
+            position: absolute
+            display: block
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            background-color: rgba(255,255,255,.8)
+            z-index: 5
+        &:after
+            content: ''
+            position: fixed
+            display: block
+            width: 30px
+            height: 30px
+            border: 5px dashed rgba(0,0,0,1)
+            border-radius: 50%
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+            animation-name: loading
+            animation-timing-function: ease
+            animation-iteration-count: infinite
+            animation-direction: normal
+            animation-duration: 1s
+            animation-play-state: running
+            z-index: 9
+
+.section--films
+    padding-top: 2.2rem
+
+@supports (display: grid)
+    .layout
+        &--grid
+            display: grid
+            grid-template-rows: auto 1fr
+            grid-template-columns: 1fr
+    .grid
+        display: grid
+        grid-auto-rows: 1fr
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+        grid-row-gap: 2.2rem
+        grid-column-gap: 1.8rem
+    .film
+        dl
+            display: flex
+            justify-content: space-between
+    .align_x--center
+        display: flex
+        justify-content: center
+
+@supports not (display: grid)
+    .layout
+        &--flex
+            display: flex
+            flex-flow: column
+            align-items: stretch
+            .layout__header
+                flex: 0 1 auto
+            .layout__body
+                flex: 1
+
+    .grid
+        display: flex
+        flex-flow: row wrap
+        &__item
+            flex: 1 0 calc(100% / 3 - 1.8rem)
+            margin-bottom: 2.2rem
+    .film
+        dl
+            display: flex
+    .align_x--center
+        display: flex
+        justify-content: center
+
+@supports not (display: flex)
+    .grid
+        display: block
+        width: 100%
+        font: 0/0 a
+        &__item
+            display: inline-block
+            vertical-align: top
+            width: calc(100% / 3 - 18px)
+            &:not(:nth-child(3n + 3))
+                margin-right: 1.8rem
+    .align_x--center
+        text-align: center
+        button
+            display: inline-block
+
+.grid
+    margin-bottom: 3rem
+.film
+    position: relative
+    border-radius: $radius-default
+    box-shadow: $shadow-default
+    background: $color-white
+    border: inset 1px solid transparent
+    padding-bottom: 1rem
+    overflow: hidden
+    &:hover
+        transform: scale(1.02)
+    &:focus
+        transform: translateX(5px)
+    &__picture
+        height: 8.2rem
+        width: 100%
+        background-repeat: no-repeat
+        background-position: 50% 50%
+        background-size: cover
+    &__uri
+        font-size: $font-size-normal
+        line-height: $line-height-normal
+        color: $color-blue
+        text-decoration: none
+        font-weight: normal
+        &:visited
+            color: $color-blue
+        &:after
+            content: ''
+            position: absolute
+            display: block
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            z-index: 3
+    &__title
+        color: inherit
+        font-size: inherit
+        line-height: inherit
+        font-weight: inherit
+        padding: 1rem 1rem 0
+    dl
+        padding-left: 1rem
+        padding-right: 1rem
+        font-size: $font-size-small
+        line-height: $line-height-small
+        color: $color-grey
