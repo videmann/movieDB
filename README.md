@@ -33,3 +33,7 @@ just some movie DB API
 // Что хотелось бы сделать
 // Определенно, сделал бы я это "приложение" на React или Vue, кода было бы в разы меньше.
 // Код стал бы красивым, легко читаемым и легко поддерживаемым.
+
+
+Тоже самое, но с bootstrap и библиотекой (https://github.com/cavestri/themoviedb-javascript-library.git)
+https://codepen.io/videmann/pen/yLLqJKj
